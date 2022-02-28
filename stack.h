@@ -14,14 +14,14 @@ typedef struct Stack Stack;
 typedef struct RPN RPN;
 
 Stack* create_Stack();
-void stack_push_back(Stack *symbols_stack, char symbol);
-void stack_pop_back(Stack *symbols_stack);
+void stack_push(Stack *symbols_stack, char symbol);
+void stack_pop(Stack *symbols_stack);
 void free_stack(Stack *symbols_stack);
 char stack_get_top(Stack *symbols_stack);
 
 RPN* create_RPN();
-void RPN_push_back(RPN *rpn_stack, bool is_num, char *num_or_symbol);
-void RPN_pop_back(RPN *rpn_stack);
+void RPN_push(RPN *rpn_stack, bool is_num, char *num_or_symbol);
+void RPN_pop(RPN *rpn_stack);
 size_t RPN_get_number_of_numbers(RPN *rpn_stack);
 char RPN_get_top_char(RPN *rpn_stack);
 long double RPN_get_top_number(RPN *rpn_stack);

@@ -239,7 +239,7 @@ Str_vector *parse_expression(char *expression)
     while (strlen(expression) > 0)
     {
         substr = take_next(&expression);
-        push_back(vector, substr);
+        push(vector, substr);
         free(substr);
     }
     return vector;
@@ -265,10 +265,10 @@ RPN:    A B C * D + E F + * G - -
         {
             if(weight(str[0]) < weight(stack_get_top(stack)))
             {
-                RPN_push_back(rpn_stack, false, str[0]);
-                stack_pop_back(stack);
+                RPN_push(rpn_stack, false, str[0]);
+                stack_pop(stack);
             }
-            stack_push_back(stack, str);
+            stack_push(stack, str);
             if(str[0] == CLOSE_PARENTHESIS)
             {
                 solve_parenthesis(&rpn_stack);
@@ -278,13 +278,13 @@ RPN:    A B C * D + E F + * G - -
         long double num1 = 0, num2 = 0;
         if(is_operator(c))
         {
-            RPN_pop_back(rpn_stack);
+            RPN_pop(rpn_stack);
 
             num1 = RPN_get_top_number(rpn_stack);
-            RPN_pop_back(rpn_stack);
+            RPN_pop(rpn_stack);
 
             num2 = RPN_get_top_number(rpn_stack);
-            RPN_pop_back(rpn_stack);
+            RPN_pop(rpn_stack);
 
             switch (c)
             {
