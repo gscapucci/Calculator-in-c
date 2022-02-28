@@ -311,6 +311,11 @@ RPN:    A B C * D + E F + * G - -
     return 0.0l;
 }
 
+long double get_result(Calculator *calculator)
+{
+    return calculator->result;
+}
+
 void calculate(Calculator *calculator, char *str)
 {
     char *expression = remove_spaces(str);
@@ -318,10 +323,9 @@ void calculate(Calculator *calculator, char *str)
     {
         fprintf(stderr, "Invalid expression: \"%s\" is invalid", expression);
         free(expression);
-        return;
+        exit(1);
     }
     calculator->parsed_expression = parse_expression(expression);
-    long double solution = solve(calculator->parsed_expression);
-    print_vec(calculator->parsed_expression);
+    calculator->result = solve(calculator->parsed_expression);
     free(expression);
 }
