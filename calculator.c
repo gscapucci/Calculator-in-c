@@ -70,6 +70,7 @@ int weight(char c)
 struct Calculator 
 {
     Str_vector *parsed_expression;
+    long double result;
 };
 
 Calculator *create_calculator()
@@ -78,6 +79,7 @@ Calculator *create_calculator()
     if(calc)
     {
         calc->parsed_expression = create_vector(20);
+        calc->result = 0;
         return calc;
     }
     return NULL;
@@ -237,7 +239,7 @@ Str_vector *parse_expression(char *expression)
     while (strlen(expression) > 0)
     {
         substr = take_next(&expression);
-        push(vector, substr);
+        push_back(vector, substr);
         free(substr);
     }
     return vector;
@@ -263,10 +265,10 @@ RPN:    A B C * D + E F + * G - -
         {
             if(weight(str[0]) < weight(stack_get_top(stack)))
             {
-                RPN_push(rpn_stack, false, str[0]);
-                stack_pop(stack);
+                RPN_push_back(rpn_stack, false, str[0]);
+                stack_pop_back(stack);
             }
-            stack_push(stack, str);
+            stack_push_back(stack, str);
             if(str[0] == CLOSE_PARENTHESIS)
             {
                 solve_parenthesis(&rpn_stack);
@@ -276,13 +278,13 @@ RPN:    A B C * D + E F + * G - -
         long double num1 = 0, num2 = 0;
         if(is_operator(c))
         {
-            RPN_pop(rpn_stack);
+            RPN_pop_back(rpn_stack);
 
             num1 = RPN_get_top_number(rpn_stack);
-            RPN_pop(rpn_stack);
+            RPN_pop_back(rpn_stack);
 
             num2 = RPN_get_top_number(rpn_stack);
-            RPN_pop(rpn_stack);
+            RPN_pop_back(rpn_stack);
 
             switch (c)
             {

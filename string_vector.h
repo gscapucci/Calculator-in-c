@@ -9,8 +9,8 @@
 typedef struct Str_vector Str_vector;
 
 Str_vector* create_vector(size_t start_capacity);
-void push(Str_vector *vec, char *str);
-void pop(Str_vector *vec);
+void push_back(Str_vector *vec, char *str);
+void pop_back(Str_vector *vec);
 void pop_front(Str_vector *vec);
 void print_vec(Str_vector *vec);
 char* get_at(Str_vector *vec, size_t pos);

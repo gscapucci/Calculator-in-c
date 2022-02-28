@@ -33,7 +33,7 @@ Stack* create_Stack()
     return NULL;
 }
 
-void stack_push(Stack *symbols_stack, char symbol)
+void stack_push_back(Stack *symbols_stack, char symbol)
 {
     if(symbols_stack)
     {
@@ -45,7 +45,7 @@ void stack_push(Stack *symbols_stack, char symbol)
     }
 }
 
-void stack_pop(Stack *symbols_stack)
+void stack_pop_back(Stack *symbols_stack)
 {
     if(symbols_stack)
     {
@@ -129,7 +129,7 @@ RPN *create_RPN()
 }
 
 
-void RPN_push(RPN *rpn_stack, bool is_num, char *num_or_symbol)
+void RPN_push_back(RPN *rpn_stack, bool is_num, char *num_or_symbol)
 {
     if(rpn_stack)
     {
@@ -165,7 +165,7 @@ void RPN_push(RPN *rpn_stack, bool is_num, char *num_or_symbol)
     }
 }
 
-void RPN_pop(RPN *rpn_stack)
+void RPN_pop_back(RPN *rpn_stack)
 {
     if(rpn_stack)
     {
@@ -202,28 +202,15 @@ char RPN_get_top_char(RPN *rpn_stack)
 {
     if(rpn_stack)
     {
-        if(rpn_stack->size == 0)
-        {
-            fprintf(stderr, "stack is empty");
-        }
         if(rpn_stack->values)
         {
-            if(*(rpn_stack->values[rpn_stack->size - 1].is_operator) == true)
+            if(*(rpn_stack->values[rpn_stack->size -1 ].is_operator) == true)
             {
                 return rpn_stack->values[rpn_stack->size - 1].operator;
             }
         }
     }
-    fprintf(stderr, "top is not char");
-    return 0;
-}
-
-long double RPN_get_top_number(RPN *rpn_stack)
-{
-    if(rpn_stack)
-    {
-
-    }
+    return '\0';
 }
 
 void free_RPN(RPN *rpn_stack)

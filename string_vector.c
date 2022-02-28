@@ -23,7 +23,7 @@ Str_vector* create_vector(size_t start_capacity)
     return NULL;
 }
 
-void push(Str_vector *vec, char *str)
+void push_back(Str_vector *vec, char *str)
 {
     if(!strlen(str) || !str || !vec || !vec->values)
     {
@@ -64,7 +64,7 @@ void pop_front(Str_vector *vec)
     }
 }
 
-void pop(Str_vector *vec)
+void pop_back(Str_vector *vec)
 {
     if(vec->size == 0)
     {
